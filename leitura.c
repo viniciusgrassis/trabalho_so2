@@ -1,7 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "fila_addr.h"
+#include "./leitura.h"
 
 
 int hex_int(const char *hex){
@@ -11,43 +8,39 @@ int hex_int(const char *hex){
 Fila_addr* leituraArquivo(char *path){
     FILE *arquivo = fopen(path, "r");
     if(arquivo == NULL){
-        printf("Erro ao abrir o arquivo");
-        return -1;
+        printf("Erro ao abrir o arquivo\n");
+        return NULL;
     }
 
     Fila_addr *fila = criaFilaAddr();
+    char linha[20]; // 8 hexa, 1 espaço, um char e \n
 
+    while(fgets(linha, sizeof(linha), arquivo) != NULL){
 
-    // char *tok1;
-    // char *addrs = strtok_r(arquivo, "\n", &tok1);
-    // while(addrs != NULL){
-    //     char *tok2;
-    //     char *aux = strtok_r(addrs, " ", &tok2);
+        char *token = strtok(linha, " ");
+        while(token != NULL){
 
-    //     char *addrsFile = (char*) malloc (strlen(aux) + 1);
+            char *addrsFile = (char*) malloc(strlen(token) + 1);
+            if(addrsFile == NULL){
+                fclose(arquivo);
+                return NULL;
+            }
 
-    //     strcpy(addrsFile, aux);
-    //     aux = strtok_r(NULL, )
+            strcpy(addrsFile, token);
 
+            token = strtok(NULL, " ");
+            char opFile = token[0];
 
-    // }
+            enfileirarAddr(fila, hex_int(addrsFile), opFile);
 
-    char *addrs = strtok(arquivo, " \n");
-    while(addrs != NULL){
-        char *addrsFile = (char*) malloc (strlen(addrs) + 1);
-
-        strcpy(addrsFile, addrs);
-
-        addrs = strtok(NULL, " \n");
-        
-        char opFile = addrs[0];
-
-        enfileirarAddr(fila, addrsFile, opFile);
+            token = strtok(NULL, " ");
+        }
     }
 
+    fclose(arquivo);
     return fila; 
-
 }
+
 
 
     // char *tokPipe;

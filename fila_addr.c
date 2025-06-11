@@ -43,7 +43,7 @@ int enfileirarAddr(Fila_addr *fila_addr, int addr, char op) {
     novo->addr = addr;
     novo->op = op;
     
-    if(estaVaziaFila_addr(fila_addr)){
+    if(estaVaziaFilaAddr(fila_addr)){
         fila_addr->inicio = novo;
     } else {
         fila_addr->final->prox = novo;
@@ -55,7 +55,7 @@ int enfileirarAddr(Fila_addr *fila_addr, int addr, char op) {
 
 int desenfileirarAddr(Fila_addr *fila_addr) {
     if(fila_addr == NULL) return 0;
-    if(estaVaziaFila_addr(fila_addr)) return 0;
+    if(estaVaziaFilaAddr(fila_addr)) return 0;
     NO *aux = fila_addr->inicio;
     fila_addr->inicio = aux->prox;
     if(fila_addr->final == aux) fila_addr->final = aux->prox;

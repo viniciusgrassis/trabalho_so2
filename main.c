@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "./fila_addr.h"
-#include "./leitura.h"
+#include "./Estrutura-de-dados/fila_addr.h"
+#include "./Estrutura-de-dados/leitura.h"
 
 int main(int argc, char *argv[]){
     Fila_addr *addrs = leituraArquivo("teste.txt");

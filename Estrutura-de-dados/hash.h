@@ -2,10 +2,10 @@
 #define HASH_H
 #include <stdio.h>
 #include <stdlib.h>
-#include "./fila_hash.h"
+#include "./fila_virtual.h"
 
 typedef struct{
-    Fila_hash **tabela;
+    FilaPagVirtual **tabela;
     int tamanho;
 } Hash;
 

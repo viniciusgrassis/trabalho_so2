@@ -5,7 +5,7 @@ Hash* criaHash(int tamanho){
 
     if(h == NULL) return NULL;
 
-    h->tabela = (Fila_hash**)malloc(tamanho * sizeof(Fila_hash*));
+    h->tabela = (FilaPagVirtual**)malloc(tamanho * sizeof(FilaPagVirtual*));
 
     if(h->tabela == NULL) return NULL;
 
@@ -23,7 +23,7 @@ void destroiHash(Hash* h){
 
     for(int i = 0; i < h->tamanho; i++){
         if(h->tabela[i] != NULL){
-            destroiFilahash(h->tabela[i]);
+            destroiFilaPagVirtual(h->tabela[i]);
         }
     }
     free(h->tabela);

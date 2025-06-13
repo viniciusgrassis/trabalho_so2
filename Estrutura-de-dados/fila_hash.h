@@ -6,8 +6,8 @@
 #include <string.h>
 
 typedef struct No {
-    int paginaVirtual;
     int paginaFisica; 
+    int validade;
     struct No *prox;
     struct No *ant;
 } NO;
@@ -20,10 +20,8 @@ typedef struct {
 
 Fila_hash *criaFilahash();
 void destroiFilahash(Fila_hash *fila);
-int enfileirarhash(Fila_hash *fila, int hash, char op);
-int desenfileirarhash(Fila_hash *fila);
+int enfileirarhash(Fila_hash *fila, int paginaFisica);
 int estaVaziaFilahash(Fila_hash *fila);
 void imprimirFila_hash(Fila_hash *fila);
-int tamanhoFilahash(Fila_hash *fila);
 
 #endif

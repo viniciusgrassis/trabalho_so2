@@ -2,15 +2,12 @@
 #define HASH_H
 #include <stdio.h>
 #include <stdlib.h>
-
-typedef struct {
-
-} ;
+#include "./fila_hash.h"
 
 typedef struct{
-    int *tabela;
-    int tamanho, quantidade;
-}Hash;
+    Fila_hash **tabela;
+    int tamanho;
+} Hash;
 
 Hash* criaHash(int tamanho);
 

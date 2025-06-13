@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "leitura.h": "c"
+        "leitura.h": "c",
+        "fila_addrs.h": "c"
     }
 }

@@ -35,11 +35,10 @@ int estaVaziaFilahash(Fila_hash *fila_hash) {
     return fila_hash->tamanho == 0;
 }
 
-int enfileirarhash(Fila_hash *fila_hash, int paginaVirutal, int paginaFisica) {
+int enfileirarhash(Fila_hash *fila_hash, int paginaFisica) {
     if(fila_hash == NULL) return 0;
     NO *novo = criaNO();
 
-    novo->paginaVirtual = paginaVirutal;
     novo->paginaFisica = paginaFisica;
     
     if(estaVaziaFilahash(fila_hash)){
@@ -53,26 +52,60 @@ int enfileirarhash(Fila_hash *fila_hash, int paginaVirutal, int paginaFisica) {
     return 1;
 }
 
-int desenfileirarhash(Fila_hash *fila_hash) {
-    if(fila_hash == NULL) return 0;
-    if(estaVaziaFilahash(fila_hash)) return 0;
-    
-    NO *aux = fila_hash->inicio;
-    fila_hash->inicio = aux->prox;
-    if(fila_hash->final == aux) fila_hash->final = aux->prox;
-    destroiNO(aux);
+int removerNO(Fila_hash *fila_hash, NO *no) {
+    if (fila_hash == NULL || no == NULL) return 0;
+
+    // Se o nó for o primeiro
+    if (no == fila_hash->inicio) {
+        fila_hash->inicio = no->prox;
+        if (fila_hash->inicio != NULL)
+            fila_hash->inicio->ant = NULL;
+        else
+            fila_hash->final = NULL; // Fila ficou vazia
+    }
+    // Se o nó for o último
+    else if (no == fila_hash->final) {
+        fila_hash->final = no->ant;
+        if (fila_hash->final != NULL)
+            fila_hash->final->prox = NULL;
+        else
+            fila_hash->inicio = NULL; // Fila ficou vazia
+    }
+    // Se for um nó do meio
+    else {
+        no->ant->prox = no->prox;
+        no->prox->ant = no->ant;
+    }
+
+    destroiNO(no);
     fila_hash->tamanho--;
     return 1;
 }
 
-void imprimirFila_hash(Fila_hash *fila_hash){
-    if (fila_hash == NULL) return;
-    NO *aux = fila_hash->inicio;
-    int number = 1;
-    while (aux != NULL){
-        printf("%d = %X , %c\n", number, aux->hash, aux->op); number++;
-        aux = aux->prox;
+                // DDDDDEIXAR
+int removePaginaFisica(Fila_hash *Fila_hash, int endereço){
+
+    NO *atual = fila_hash->inicio;
+    while (atual != NULL) {
+        if (atual->paginaVirtual == alvo) {
+            removerNO(fila_hash, atual);
+            break;
+        }
+        atual = atual->prox;
     }
-    printf("\n");
+
 }
+
+
+
+// void imprimirFila_hash(Fila_hash *fila_hash){
+//     if (fila_hash == NULL) return;
+//     NO *aux = fila_hash->inicio;
+//     int number = 1;
+//     while (aux != NULL){
+//         printf("%d = %X , %c\n", number, aux->hash, aux->op); number++;
+//         aux = aux->prox;
+//     }
+//     printf("\n");
+// }
 

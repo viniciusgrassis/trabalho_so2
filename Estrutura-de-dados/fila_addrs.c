@@ -1,6 +1,6 @@
 #include "./fila_addrs.h"
 
-NO *criaNO() {
+NO *criaNO(){
     NO *no = (NO*)malloc(sizeof(NO));
     no->prox = NULL;
     return no;
@@ -19,7 +19,7 @@ Fila_addrs *criaFilaAddrs(){
     return fila_addrs;
 }
 
-void destroiFilaAddrs(Fila_addrs *fila_addrs) {
+void destroiFilaAddrs(Fila_addrs *fila_addrs){
     if(fila_addrs == NULL) return;
     while(fila_addrs->inicio != NULL){
         NO *aux = fila_addrs->inicio;
@@ -29,12 +29,12 @@ void destroiFilaAddrs(Fila_addrs *fila_addrs) {
     free(fila_addrs);
 }
 
-int estaVaziaFilaAddrs(Fila_addrs *fila_addrs) {
+int estaVaziaFilaAddrs(Fila_addrs *fila_addrs){
     if(fila_addrs == NULL) return 0;
     return fila_addrs->tamanho == 0;
 }
 
-int enfileirarAddrs(Fila_addrs *fila_addrs, int addrs, char op) {
+int enfileirarAddrs(Fila_addrs *fila_addrs, int addrs, char op){
     if(fila_addrs == NULL) return 0;
     NO *novo = criaNO();
     novo->addrs = addrs;
@@ -50,7 +50,7 @@ int enfileirarAddrs(Fila_addrs *fila_addrs, int addrs, char op) {
     return 1;
 }
 
-int desenfileirarAddrs(Fila_addrs *fila_addrs) {
+int desenfileirarAddrs(Fila_addrs *fila_addrs){
     if(fila_addrs == NULL) return 0;
     if(estaVaziaFilaAddrs(fila_addrs)) return 0;
     NO *aux = fila_addrs->inicio;
@@ -66,13 +66,9 @@ void imprimirFila_addrs(Fila_addrs *fila_addrs){
     NO *aux = fila_addrs->inicio;
     int number = 1;
     while (aux != NULL){
-        printf("%d = %X , %c\n", number, aux->addrs, aux->op); number++;
+        printf("%d = %d , %c\n", number, aux->addrs, aux->op); number++;
         aux = aux->prox;
     }
     printf("\n");
 }
 
-int tamanhoFilaAddrs(Fila_addrs *fila_addrs){
-    if(fila_addrs == NULL) return -1;
-    return fila_addrs->tamanho;
-}

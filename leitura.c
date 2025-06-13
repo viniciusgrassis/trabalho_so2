@@ -1,10 +1,6 @@
 #include "./leitura.h"
 
 
-int hex_int(const char *hex){
-    return (int)strtol(hex, NULL, 16);
-}
-
 Fila_addrs* leituraArquivo(char *path){
     FILE *arquivo = fopen(path, "r");
     if(arquivo == NULL){

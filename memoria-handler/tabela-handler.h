@@ -5,5 +5,6 @@
 #include "./estrutura-de-dados/fila_addrs.h"
 
 int acessoTabela(Hash* tabelaPaginas, int addrsShift);
+int mapearFisicoTabela(Hash* tabelaPaginas, int addrsShift );
 
 #endif

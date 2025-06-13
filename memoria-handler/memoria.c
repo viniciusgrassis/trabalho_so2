@@ -1,13 +1,11 @@
-#include "./quadro-handler.h"
-#include "./tabela-handler.h"
-#include "./estrutura-de-dados/fila_addrs.h"
+#include "./memoria.h"
 
 int acessoMemoria(Hash* tabelaPaginas, QuadrosPagina* quadrosPagina, NO* endereco, int shift){
     int posicaoFisica = acessoTabela( tabelaPaginas, ((endereco->addrs) >> shift));
 
     if(posicaoFisica != -1){ // = -1 erro. tem que criar pagina virtual
         // deu certo e fazer o codigo que segue
-
+    // 8========================================================================================>> - - - 
         
         return 1;
     } 
@@ -20,7 +18,12 @@ int acessoMemoria(Hash* tabelaPaginas, QuadrosPagina* quadrosPagina, NO* enderec
     if(quadroVazio){
         mapearFisicoTabela(tabelaPaginas, ((endereco->addrs) >> shift));
         // mapear
+        
+         // 8========================================================================================>> - - - 
+
     } else {
+         // 8========================================================================================>> - - - 
+        
         // politica de subst
     }
 

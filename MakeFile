@@ -1,45 +1,20 @@
-CC = gcc 
-CFLAGS = 
+CC = gcc
+CFLAGS =
+TARGET = tp2virtual 
+OBJ_SRC = objetos
+SOURCES_C = $(shell find . -name '*.c')
+OBJ = $(patsubst ./%, $(OBJ_SRC)/%, $(SOURCES_C:.c=.o))
 
-TARGET = tp2virtual
-ESTRUTURA_SRC = ./estrutura-de-dados
-OBJ_SRC = ./objetos
-OBJ_TARGET = $(OBJ_SRC)/Fila_processo.o $(OBJ_SRC)/Fila_args.o $(OBJ_SRC)/leitura.o $(OBJ_SRC)/comando_interno.o $(OBJ_SRC)/comando_externo.o $(OBJ_SRC)/variaveis.o
-OBJS = Fila_args.o Fila_processo.o leitura.o comando_interno.o comando_externo.o variaveis.o
-SRC = main.c 
+$(OBJ_SRC)/%.o: %.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
 
-$(OBJ_SRC):
-	mkdir -p $(OBJ_SRC)
-
-$(TARGET): $(OBJ_SRC) $(SRC) $(OBJS) 
-	$(CC) $(CFLAGS) -o $(TARGET) $(SRC) $(OBJ_TARGET) $(LDFLAGS)
+build: $(OBJ)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJ)
 
 run: $(TARGET)
-	./$(TARGET)
+	./$(TARGET) teste.txt
 
-# readline deixa muitos blocos como "still reachable". Após o termino do programa, o SO limpa
-# para ocultar isso, --show-leak-kinds com definite
-leak: $(TARGET)
-	valgrind --leak-check=full --track-origins=yes --show-leak-kinds=definite -s ./$(TARGET) 
 
 clean:
-	rm -f $(TARGET)
-	rm -r $(OBJ_SRC)
-
-comando_externo.o: comando_externo.c comando_externo.h
-	$(CC) $(CFLAGS) -c comando_externo.c -o $(OBJ_SRC)/comando_externo.o
-
-comando_interno.o: comando_interno.c comando_interno.h
-	$(CC) $(CFLAGS) -c comando_interno.c -o $(OBJ_SRC)/comando_interno.o
-
-leitura.o: leitura.c leitura.h
-	$(CC) $(CFLAGS) -c leitura.c -o $(OBJ_SRC)/leitura.o
-
-Fila_args.o: $(ESTRUTURA_SRC)/Fila_args.h $(ESTRUTURA_SRC)/Fila_args.c 
-	$(CC) $(CFLAGS) -c $(ESTRUTURA_SRC)/Fila_args.c -o $(OBJ_SRC)/Fila_args.o
-
-Fila_processo.o: $(ESTRUTURA_SRC)/Fila_processo.h $(ESTRUTURA_SRC)/Fila_processo.c 
-	$(CC) $(CFLAGS) -c $(ESTRUTURA_SRC)/Fila_processo.c -o $(OBJ_SRC)/Fila_processo.o
-
-variaveis.o: $(ESTRUTURA_SRC)/variaveis.h $(ESTRUTURA_SRC)/variaveis.c 
-	$(CC) $(CFLAGS) -c $(ESTRUTURA_SRC)/variaveis.c -o $(OBJ_SRC)/variaveis.o
+	rm -rf $(OBJ_SRC)

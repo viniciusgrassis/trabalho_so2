@@ -1,13 +1,13 @@
 #include "./fila_hash.h"
 
-NO *criaNO() {
+NO *criaNO1() {
     NO *no = (NO*)malloc(sizeof(NO));
     no->prox = NULL;
     no->ant = NULL;
     return no;
 }
 
-void destroiNO(NO *no){
+void destroiNO1(NO *no){
     free(no);
 }
 
@@ -25,7 +25,7 @@ void destroiFilahash(Fila_hash *fila_hash) {
     while(fila_hash->inicio != NULL){
         NO *aux = fila_hash->inicio;
         fila_hash->inicio = fila_hash->inicio->prox;
-        destroiNO(aux);
+        destroiNO1(aux);
     }
     free(fila_hash);
 }
@@ -37,7 +37,7 @@ int estaVaziaFilahash(Fila_hash *fila_hash) {
 
 int enfileirarhash(Fila_hash *fila_hash, int paginaFisica) {
     if(fila_hash == NULL) return 0;
-    NO *novo = criaNO();
+    NO *novo = criaNO1();
 
     novo->paginaFisica = paginaFisica;
     
@@ -77,11 +77,11 @@ int removerNO(Fila_hash *fila_hash, NO *no) {
         no->prox->ant = no->ant;
     }
 
-    destroiNO(no);
+    destroiNO1(no);
     fila_hash->tamanho--;
     return 1;
 }
-
+/*
                 // DDDDDEIXAR
 int removePaginaFisica(Fila_hash *Fila_hash, int endereço){
 
@@ -95,6 +95,7 @@ int removePaginaFisica(Fila_hash *Fila_hash, int endereço){
     }
 
 }
+*/
 
 
 

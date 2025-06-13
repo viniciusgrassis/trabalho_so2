@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "./estrutura-de-dados/fila_addrs.h"
-#include "./leitura.h"
+#include "./io-handler/leitura.h"
 #include <string.h>
 #include <stdlib.h>
 
@@ -12,6 +12,14 @@ int main(int argc, char *argv[]){
 
     int tamanhoPagina = atoi(argv[3]);      // mais simples
     int totalMemoria = atoi(argv[4]);
+
+    int temp = tamanhoPagina;
+    int s = 0;
+    while(temp > 1) {
+        temp = temp >> 1;
+        s++;
+    }
+    printf("%d", s);
 
         
     Fila_addrs *addrss = leituraArquivo(arquivo_endereco);

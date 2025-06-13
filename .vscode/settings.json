@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "leitura.h": "c",
-        "fila_addrs.h": "c"
+        "fila_addrs.h": "c",
+        "quadro-handler.h": "c"
     }
 }

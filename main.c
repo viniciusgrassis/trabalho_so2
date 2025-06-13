@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include "./estrutura-de-dados/fila_addrs.h"
+#include "./estrutura-de-dados/hash.h"
+#include "./memoria-handler/quadro-handler.h"
 #include "./io-handler/leitura.h"
 #include <string.h>
 #include <stdlib.h>
@@ -19,13 +21,22 @@ int main(int argc, char *argv[]){
 
     //page = addr >> shift, pelo pdf do saquetto
 
+    int quantidadePaginas = totalMemoria / tamanhoPagina;
+
     printf("%d\n", temp);
     printf("%d\n", shift);
         
     Fila_addrs *addrss = leituraArquivo(arquivo_endereco);
     
+    Hash* tabelaPag = criaHash(quantidadePaginas);
+
+    QuadrosPagina* tabelaQuadors = criaQuadrosMemoria(quantidadePaginas);  
+
+    
+    
     NO *aux = addrss->inicio;
     while(aux != NULL){
+
 
         
 

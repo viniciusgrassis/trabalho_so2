@@ -14,14 +14,13 @@ int main(int argc, char *argv[]){
     int totalMemoria = atoi(argv[4]);
 
     
-    int temp = pow(2, log2(tamanhoPagina)) * pow(2, 10);
+    int temp = pow(2, log2(tamanhoPagina)) * pow(2, 10); // Calcula o tamanho das páginas em KB
+    int shift = log2(temp); // Quantidade de bits que devem ser descartados para identificar a página
+
+    //page = addr >> shift, pelo pdf do saquetto
+
     printf("%d\n", temp);
-    int s = 0;
-    while(temp > 1) {
-        temp = temp >> 1;
-        s++;
-    }
-    printf("%d\n", s);
+    printf("%d\n", shift);
         
     Fila_addrs *addrss = leituraArquivo(arquivo_endereco);
     

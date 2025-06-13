@@ -4,16 +4,17 @@ TARGET = tp2virtual
 OBJ_SRC = objetos
 SOURCES_C = $(shell find . -name '*.c')
 OBJ = $(patsubst ./%, $(OBJ_SRC)/%, $(SOURCES_C:.c=.o))
+LIBFLAG = -lm
 
 $(OBJ_SRC)/%.o: %.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 build: $(OBJ)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJ)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJ) $(LIBFLAG)
 
 run: $(TARGET)
-	./$(TARGET) teste.txt
+	./$(TARGET) lru teste.txt 4 128
 
 
 clean:

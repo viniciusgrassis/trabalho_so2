@@ -3,24 +3,25 @@
 #include "./io-handler/leitura.h"
 #include <string.h>
 #include <stdlib.h>
+#include <math.h>
 
 
 int main(int argc, char *argv[]){
-    char *arquivo_endereco  = argv[1];
+    char *substituicao = argv[1];
+    char *arquivo_endereco  = argv[2];
 
-    char *substituicao = argv[2];
-
-    int tamanhoPagina = atoi(argv[3]);      // mais simples
+    int tamanhoPagina = atoi(argv[3]);
     int totalMemoria = atoi(argv[4]);
 
-    int temp = tamanhoPagina;
+    
+    int temp = pow(2, log2(tamanhoPagina)) * pow(2, 10);
+    printf("%d\n", temp);
     int s = 0;
     while(temp > 1) {
         temp = temp >> 1;
         s++;
     }
-    printf("%d", s);
-
+    printf("%d\n", s);
         
     Fila_addrs *addrss = leituraArquivo(arquivo_endereco);
     

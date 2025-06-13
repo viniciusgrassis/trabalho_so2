@@ -14,6 +14,11 @@ QuadrosPagina* criaQuadrosMemoria(int tamanho){
     return memoria;
 }
 
-int procuraQuadroVazio(){
-    
+int procuraQuadroVazio(QuadrosPagina* quadrosPaginas){
+    for(int i = 0; i < quadrosPaginas->tamanhoTotal; i++){
+        if(quadrosPaginas->quadroPosicoes[i] == 0){ // 0 = vazio
+            return i;
+        }
+    }
+    return -1;
 }

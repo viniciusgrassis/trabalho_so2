@@ -13,4 +13,7 @@ typedef struct{
 
 QuadrosPagina* criaQuadrosMemoria(int tamanho);
 
+int procuraQuadroVazio(QuadrosPagina* quadrosPaginas);
+
+
 #endif

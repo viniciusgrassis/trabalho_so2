@@ -1,6 +1,5 @@
 #include "hash.h"
 
-
 Hash* criaHash(int tamanho){
     Hash* h;
     h = (Hash*)malloc(sizeof(Hash));

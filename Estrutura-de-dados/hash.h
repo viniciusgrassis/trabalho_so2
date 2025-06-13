@@ -3,13 +3,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+typedef struct {
+
+} ;
+
 typedef struct{
-    int **tabela;
+    int *tabela;
     int tamanho, quantidade;
 }Hash;
 
 Hash* criaHash(int tamanho);
+
 void destroiHash(Hash* h);
+
 int chave(unsigned int pagina_virtual, int total_quadros);
 
 #endif

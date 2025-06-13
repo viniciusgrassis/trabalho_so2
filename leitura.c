@@ -5,14 +5,14 @@ int hex_int(const char *hex){
     return (int)strtol(hex, NULL, 16);
 }
 
-Fila_addr* leituraArquivo(char *path){
+Fila_addrs* leituraArquivo(char *path){
     FILE *arquivo = fopen(path, "r");
     if(arquivo == NULL){
         printf("Erro ao abrir o arquivo\n");
         return NULL;
     }
 
-    Fila_addr *fila = criaFilaAddr();
+    Fila_addrs *fila = criaFilaAddrs();
     char linha[20]; // 8 hexa, 1 espaço, um char e \n
 
     while(fgets(linha, sizeof(linha), arquivo) != NULL){
@@ -20,18 +20,18 @@ Fila_addr* leituraArquivo(char *path){
         char *token = strtok(linha, " ");
         while(token != NULL){
 
-            char *addrsFile = (char*) malloc(strlen(token) + 1);
-            if(addrsFile == NULL){
+            char *addrssFile = (char*) malloc(strlen(token) + 1);
+            if(addrssFile == NULL){
                 fclose(arquivo);
                 return NULL;
             }
 
-            strcpy(addrsFile, token);
+            strcpy(addrssFile, token);
 
             token = strtok(NULL, " ");
             char opFile = token[0];
 
-            enfileirarAddr(fila, hex_int(addrsFile), opFile);
+            enfileirarAddrs(fila, hex_int(addrssFile), opFile);
 
             token = strtok(NULL, " ");
         }

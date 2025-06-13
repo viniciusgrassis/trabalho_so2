@@ -17,7 +17,8 @@ int acessoMemoria(Hash* tabelaPaginas, QuadrosPagina* quadrosPagina, NO* enderec
     
     int quadroVazio = procuraQuadroVazio(quadrosPagina);
 
-    if(quadroVazio) {
+    if(quadroVazio){
+        mapearFisicoTabela(tabelaPaginas, ((endereco->addrs) >> shift));
         // mapear
     } else {
         // politica de subst

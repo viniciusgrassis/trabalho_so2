@@ -2,6 +2,7 @@
 #include "./estrutura-de-dados/fila_addrs.h"
 #include "./estrutura-de-dados/hash.h"
 #include "./memoria-handler/quadro-handler.h"
+#include "./memoria-handler/memoria.h"
 #include "./io-handler/leitura.h"
 #include <string.h>
 #include <stdlib.h>
@@ -30,14 +31,14 @@ int main(int argc, char *argv[]){
     
     Hash* tabelaPag = criaHash(quantidadePaginas);
 
-    QuadrosPagina* tabelaQuadors = criaQuadrosMemoria(quantidadePaginas);  
+    QuadrosPagina* quadrosPagina = criaQuadrosMemoria(quantidadePaginas);  
 
     
     NO *aux = addrss->inicio;
     while(aux != NULL){
         
-        
-        
+
+        acessoMemoria(tabelaPag, quadrosPagina, aux, shift);
         
         
 

@@ -8,7 +8,7 @@ QuadrosPagina* criaQuadrosMemoria(int tamanho){
         memoria->quadroPosicoes[i] = 0;
     }
 
-    memoria->tamanhoTotal = 0;
+    memoria->tamanhoTotal = tamanho;
     memoria->posicoesPreenchidas = 0;
 
     return memoria;

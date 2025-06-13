@@ -6,6 +6,7 @@
 #include <string.h>
 
 typedef struct PaginaVirtual {
+    int paginaVirtual;
     int paginaFisica; 
     int validade;
     int modficada;
@@ -27,5 +28,7 @@ void destroiFilaPagVirtual(FilaPagVirtual *fila);
 int enfileirarFilaPagVirtual(FilaPagVirtual *fila, int paginaFisica);
 int estaVaziaFilaPagVirtual(FilaPagVirtual *fila);
 void imprimirFilaPagVirtual(FilaPagVirtual *fila);
+
+int buscarPaginaFisica(FilaPagVirtual *fila, int paginaVirtual);
 
 #endif

@@ -33,11 +33,12 @@ int main(int argc, char *argv[]){
     QuadrosPagina* tabelaQuadors = criaQuadrosMemoria(quantidadePaginas);  
 
     
-    
     NO *aux = addrss->inicio;
     while(aux != NULL){
-
-
+        
+        
+        
+        
         
 
         aux = aux->prox;

@@ -1,4 +1,4 @@
-#include "quadro-handler.h"
+#include "./quadro-handler.h"
 
 QuadrosPagina* criaQuadrosMemoria(int tamanho){
     QuadrosPagina* memoria = (QuadrosPagina*) malloc (sizeof(QuadrosPagina));
@@ -13,3 +13,5 @@ QuadrosPagina* criaQuadrosMemoria(int tamanho){
 
     return memoria;
 }
+
+int inserirQuadro()

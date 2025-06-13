@@ -52,6 +52,22 @@ int enfileirarFilaPagVirtual(FilaPagVirtual *fpv, int paginaFisica) {
     return 1;
 }
 
+int buscarPaginaFisica(FilaPagVirtual *fila, int paginaVirtual) {
+    if (fila == NULL) return -1;
+
+    PaginaVirtual *atual = fila->inicio;
+
+    while (atual != NULL) {
+        if (atual->paginaVirtual == paginaVirtual) {
+            return atual->paginaFisica;
+        }
+        atual = atual->prox;
+    }
+
+    return -1; 
+}
+
+
 int removerPaginaVirtual(FilaPagVirtual *fpv, PaginaVirtual *pagVirtual) {
     if (fpv == NULL || pagVirtual == NULL) return 0;
 

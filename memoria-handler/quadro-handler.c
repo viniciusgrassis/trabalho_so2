@@ -14,4 +14,6 @@ QuadrosPagina* criaQuadrosMemoria(int tamanho){
     return memoria;
 }
 
-int inserirQuadro()
+int procuraQuadroVazio(){
+    
+}

@@ -40,6 +40,8 @@ int enfileirarFilaPagVirtual(FilaPagVirtual *fpv, int paginaFisica) {
     PaginaVirtual *novaPV = criaPaginaVirtual();
 
     novaPV->paginaFisica = paginaFisica;
+
+    novaPV->validade = 1;
     
     if(estaVaziaFilaPagVirtual(fpv)){
         fpv->inicio = novaPV;
@@ -58,8 +60,10 @@ int buscarPaginaFisica(FilaPagVirtual *fila, int paginaVirtual) {
     PaginaVirtual *atual = fila->inicio;
 
     while (atual != NULL) {
-        if (atual->paginaVirtual == paginaVirtual) {
-            return atual->paginaFisica;
+        if (atual->paginaVirtual == paginaVirtual) {  // ta joia
+            if(atual->validade == 1){
+                return atual->paginaFisica;
+            }
         }
         atual = atual->prox;
     }

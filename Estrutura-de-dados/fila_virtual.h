@@ -25,7 +25,7 @@ typedef struct {
 
 FilaPagVirtual *criaFilaPagVirtual();
 void destroiFilaPagVirtual(FilaPagVirtual *fila);
-int enfileirarFilaPagVirtual(FilaPagVirtual *fila, int paginaFisica);
+int enfileirarFilaPagVirtual(FilaPagVirtual *fila, int paginaFisica, int paginaVirtual);
 int estaVaziaFilaPagVirtual(FilaPagVirtual *fila);
 void imprimirFilaPagVirtual(FilaPagVirtual *fila);
 

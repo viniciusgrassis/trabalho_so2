@@ -35,13 +35,26 @@ int estaVaziaFilaPagVirtual(FilaPagVirtual *fpv) {
     return fpv->tamanho == 0;
 }
 
-int enfileirarFilaPagVirtual(FilaPagVirtual *fpv, int paginaFisica) {
+int enfileirarFilaPagVirtual(FilaPagVirtual *fpv, int paginaFisica, int paginaVirtual) {
     if(fpv == NULL) return 0;
     PaginaVirtual *novaPV = criaPaginaVirtual();
 
+    novaPV->modficada = 0;
     novaPV->paginaFisica = paginaFisica;
+    novaPV->paginaVirtual = paginaVirtual;
+    novaPV->referenciada = 1;
 
+
+        novaPV->ultimoAcesso = 0;  // <------------------------------------------  mudar ultimo acesso com um tempo depois
+
+
+
+
+
+
+        
     novaPV->validade = 1;
+    
     
     if(estaVaziaFilaPagVirtual(fpv)){
         fpv->inicio = novaPV;

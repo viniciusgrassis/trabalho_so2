@@ -11,13 +11,12 @@ int acessoTabela(Hash* tabelaPaginas, int addrsShift){
 }
 
 
-int mapearFisicoTabela(Hash* tabelaPaginas, int addrsShift ){
+int mapearFisicoTabela(Hash* tabelaPaginas, int addrsShift ){  // indica = pagina fisica e shift = virtual
     int indice = chave(addrsShift , tabelaPaginas->tamanho);
 
     FilaPagVirtual *lista = tabelaPaginas->tabela[indice];
 
-   if( enfileirarFilaPagVirtual(lista, addrsShift)) return 1;
-    return 0;
-
-
+   if( enfileirarFilaPagVirtual(lista, indice, addrsShift)) return 1;
+   
+   return 0;
 }

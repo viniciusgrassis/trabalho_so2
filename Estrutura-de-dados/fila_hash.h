@@ -8,6 +8,10 @@
 typedef struct No {
     int paginaFisica; 
     int validade;
+    int modficada;
+    int referenciada;
+    int ultimoAcesso;   
+    
     struct No *prox;
     struct No *ant;
 } NO;

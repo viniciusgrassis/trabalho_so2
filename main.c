@@ -27,6 +27,8 @@ int main(int argc, char *argv[]){
     NO *aux = addrss->inicio;
     while(aux != NULL){
 
+        
+
         aux = aux->prox;
     }
     

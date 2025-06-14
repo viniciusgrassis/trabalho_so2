@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include "./estrutura-de-dados/fila_addrs.h"
-#include "./estrutura-de-dados/hash.h"
-#include "./memoria-handler/quadro-handler.h"
-#include "./memoria-handler/memoria.h"
+#include "./estrutura-de-dados/tabela_inversa.h"
 #include "./io-handler/leitura.h"
 #include <string.h>
 #include <stdlib.h>
@@ -29,16 +27,13 @@ int main(int argc, char *argv[]){
         
     Fila_addrs *addrss = leituraArquivo(arquivo_endereco);
     
-    Hash* tabelaPag = criaHash(quantidadePaginas);
-
-    QuadrosPagina* quadrosPagina = criaQuadrosMemoria(quantidadePaginas);  
-
+    TabelaInversa* tabela = criaTabela(quantidadePaginas);
     
     NO *aux = addrss->inicio;
     while(aux != NULL){
         
 
-        acessoMemoria(tabelaPag, quadrosPagina, aux, shift);
+        
         
         
 

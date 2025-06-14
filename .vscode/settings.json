@@ -4,6 +4,10 @@
         "fila_addrs.h": "c",
         "quadro-handler.h": "c",
         "stdlib.h": "c",
-        "hash.h": "c"
+        "hash.h": "c",
+        "initializer_list": "c",
+        "utility": "c",
+        "xstring": "c",
+        "xutility": "c"
     }
 }

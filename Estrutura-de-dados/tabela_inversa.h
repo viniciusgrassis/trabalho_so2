@@ -11,6 +11,7 @@ typedef struct{
     int modificada;
     int referenciada;
     unsigned int ultimoAcesso;   
+    unsigned int primeiroAcesso;   
 } QuadroFisico;
 
 typedef struct NoHash{

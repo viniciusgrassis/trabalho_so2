@@ -23,8 +23,10 @@ int acessoMemoria(TabelaInversa* tabela, int paginaVirtual, char rw, char *algor
         int quadro = -1;
         if(strcmp(algoritmoSubstituicao, "lru") == 0){
             quadro = encontrarLRU(tabela);
+
         } else if(strcmp(algoritmoSubstituicao, "nru") == 0){
             quadro = encontrarVitimaNRU(tabela);
+            
         } else if(strcmp(algoritmoSubstituicao, "segunda_chance") == 0) {
             //quadro = encontrarSegundaChance(tabela);
         }

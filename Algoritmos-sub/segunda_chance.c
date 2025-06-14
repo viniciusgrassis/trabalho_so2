@@ -18,5 +18,6 @@ int encontrarSegundaChance(TabelaInversa * tabela) {
             }
         }
     }
+    
     return indice;
 }

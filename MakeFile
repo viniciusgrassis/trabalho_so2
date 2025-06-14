@@ -16,6 +16,5 @@ build: $(OBJ)
 run: $(TARGET)
 	./$(TARGET) lru compiler_test.log 8 16384
 
-
 clean:
 	rm -rf $(OBJ_SRC)

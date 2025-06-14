@@ -69,36 +69,6 @@ int insereMapeamento(TabelaInversa* tabela, int paginaVirtual, int quadroFisico,
     return 1;
 }
 
-int removePagina(TabelaInversa* tabela, int paginaVirtual) {
-    int indice = chave(paginaVirtual, tabela->tamanho);
-    NoHash* atual = tabela->hash[indice];
-    NoHash* anterior = NULL;
-    
-    // Procura a página na hash table
-    while (atual != NULL) {
-        if (atual->paginaVirtual == paginaVirtual) {
-            // Marca o quadro físico como inválido
-            tabela->quadros[atual->quadroFisico].validade = 0;
-            tabela->quadros[atual->quadroFisico].paginaVirtual = -1;
-            
-            // Remove o nó da hash table
-            if (anterior == NULL) {
-                tabela->hash[indice] = atual->prox;
-            } else {
-                anterior->prox = atual->prox;
-            }
-            
-            // Libera a memória
-            free(atual);
-            return 1;
-        }
-        anterior = atual;
-        atual = atual->prox;
-    }
-    
-    return 0; // Página não encontrada
-}
-
 
 int removePorQuadroFisico(TabelaInversa* tabela, int quadroFisico){
 

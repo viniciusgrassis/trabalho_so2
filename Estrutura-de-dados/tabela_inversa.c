@@ -11,7 +11,7 @@ TabelaInversa* criaTabela(int tamanho){
         tabela->quadros[i].paginaVirtual = -1;
         tabela->quadros[i].referenciada = 0;
         tabela->quadros[i].ultimoAcesso = -1;
-        tabela->quadros[i].modficada = 0;
+        tabela->quadros[i].modificada = 0;
 
         tabela->hash[i] = NULL;
     }

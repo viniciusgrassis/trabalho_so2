@@ -18,6 +18,7 @@ int main(int argc, char *argv[]){
     //page = addr >> shift, pelo pdf do saquetto
 
     int quantidadePaginas = totalMemoria / tamanhoPagina;
+    TabelaInversa* tabela = criaTabela(quantidadePaginas);
     unsigned int leituras = 0, escritas = 0, acessos = 0;
 
 
@@ -32,10 +33,13 @@ int main(int argc, char *argv[]){
         printf("%u, %c\n", addr, rw);
         if(rw == 'R') leituras++;
         if(rw == 'W') escritas++;
-        if(rw == 'R' || rw == 'W') acessos++;
+        if(rw == 'R' || rw == 'W') {
+            acessos++;
+        } else {
+            continue;
+        }
     }
     printf("Leituras = %u, escritas = %u\n", leituras, escritas);
-    TabelaInversa* tabela = criaTabela(quantidadePaginas);
     /*
     NO *aux = addrss->inicio;
     while(aux != NULL){

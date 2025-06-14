@@ -3,6 +3,7 @@
         "leitura.h": "c",
         "fila_addrs.h": "c",
         "quadro-handler.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "hash.h": "c"
     }
 }

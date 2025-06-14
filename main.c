@@ -21,17 +21,13 @@ int main(int argc, char *argv[]){
     int quantidadePaginas = totalMemoria / tamanhoPagina;
     TabelaInversa* tabela = criaTabela(quantidadePaginas);
     unsigned int leituras = 0, escritas = 0, acessos = 0, faltasDePagina = 0;
-
-
-    printf("%d\n", temp);
-    printf("%d\n", shift);
         
     unsigned int addr;
     char rw;
     FILE *f = fopen(arquivo_endereco, "r");
 
     while(fscanf(f, "%x %c", &addr, &rw) != EOF) {
-        printf("%u, %c\n", addr, rw);
+        // printf("%u, %c\n", addr, rw); Imprime entrada
         if(rw == 'R') leituras++;
         if(rw == 'W') escritas++;
         if(rw == 'R' || rw == 'W') {

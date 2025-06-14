@@ -11,8 +11,7 @@ int acessoMemoria(TabelaInversa* tabela, int paginaVirtual, char *algoritmoSubst
     }
 
     int vazio = procuraVazio(tabela);    
-
-    if(vazio != vazio){
+    if(vazio != -1){
         insereMapeamento(tabela, paginaVirtual, vazio, tempo);
     } else {
         int quadro = -1;

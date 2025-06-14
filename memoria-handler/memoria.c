@@ -1,5 +1,6 @@
 #include "./memoria.h"
 
-int acessoMemoria(, NO* endereco, int shift){
+int acessoMemoria(TabelaInversa* tabela, NO* endereco, int shift){
+    int indice = buscaTab
     
 }

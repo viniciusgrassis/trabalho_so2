@@ -13,16 +13,21 @@ typedef struct{
     int ultimoAcesso;   
 } QuadroFisico;
 
+typedef struct{
+    int paginaFisica;
+    int paginaVirtual;
+    struct NoHash* prox;
+} NoHash;
+
 typedef struct {
     QuadroFisico* quadros;
+    NoHash** hash;
     int tamanho;
 } TabelaInversa;
 
 
 int* criaTabela(int tamanho);
 void destroiTabela(TabelaInversa* tabela);
-
-
-
+int buscaTabelaInversa(TabelaInversa* tabela, int paginaVirtual);
 
 #endif

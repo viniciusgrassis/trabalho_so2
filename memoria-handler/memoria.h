@@ -1,10 +1,10 @@
 #ifndef MEMORIA_H
 #define MEMORIA_H 
 
-#include "./quadro-handler.h"
-#include "./tabela-handler.h"
 #include "./estrutura-de-dados/fila_addrs.h"
+#include "./estrutura-de-dados/tabela_inversa.h"
 
-int acessoMemoria(Hash* tabelaPaginas, QuadrosPagina* quadrosPagina, NO* endereco, int shift);
+int acessoMemoria(TabelaInversa* tabela, NO* endereco, int shift);
+
 
 #endif

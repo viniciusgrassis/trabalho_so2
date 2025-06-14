@@ -15,6 +15,7 @@ int acessoMemoria(TabelaInversa* tabela, NO* endereco, int shift){
         insereMapeamento(tabela, paginaVirtual, vazio);
     } else {
         // subs aqui
+        //int quadroVitima = encontrarVitimaNRU(tabela);
         int quadro = 0; // retorno do quadro achado pela função de troca ---------------------------------
         removePorQuadroFisico(tabela, quadro);
         insereMapeamento(tabela, paginaVirtual, quadro);

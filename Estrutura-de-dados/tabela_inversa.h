@@ -10,7 +10,7 @@ typedef struct{
     int validade;
     int modificada;
     int referenciada;
-    int ultimoAcesso;   
+    unsigned int ultimoAcesso;   
 } QuadroFisico;
 
 typedef struct NoHash{
@@ -29,7 +29,7 @@ typedef struct {
 TabelaInversa* criaTabela(int tamanho);
 void destroiTabela(TabelaInversa* tabela);
 int buscaTabelaInversa(TabelaInversa* tabela, int paginaVirtual);
-int insereMapeamento(TabelaInversa* tabela, int paginaVirtual, int quadroFisico);
+int insereMapeamento(TabelaInversa* tabela, int paginaVirtual, int quadroFisico, unsigned int tempo);
 int procuraVazio(TabelaInversa* tabela);
 int removePagina(TabelaInversa* tabela, int paginaVirtual);
 int removePorQuadroFisico(TabelaInversa* tabela, int quadroFisico);

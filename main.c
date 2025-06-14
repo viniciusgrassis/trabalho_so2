@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "./estrutura-de-dados/tabela_inversa.h"
+#include "./memoria-handler/memoria.h"
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
@@ -19,7 +20,7 @@ int main(int argc, char *argv[]){
 
     int quantidadePaginas = totalMemoria / tamanhoPagina;
     TabelaInversa* tabela = criaTabela(quantidadePaginas);
-    unsigned int leituras = 0, escritas = 0, acessos = 0;
+    unsigned int leituras = 0, escritas = 0, acessos = 0, faltasDePagina = 0;
 
 
     printf("%d\n", temp);
@@ -38,8 +39,19 @@ int main(int argc, char *argv[]){
         } else {
             continue;
         }
+        int paginaVirtual = addr >> shift;
+        faltasDePagina += acessoMemoria(tabela, paginaVirtual, substituicao, acessos);
+
     }
-    printf("Leituras = %u, escritas = %u\n", leituras, escritas);
+    printf(
+        "Arquivo de entrada: %s\n"
+        "Tamanho da memoria: %d KB\n"
+        "Tamanho das paginas: %d KB\n"
+        "Tecnica de reposicao: %s\n"
+        "Paginas lidas = %u\n" 
+        "Paginas escritas = %u\n"
+        "Faltas de paginas = %u\n", 
+        arquivo_endereco, totalMemoria, tamanhoPagina, substituicao,leituras, escritas, faltasDePagina);
     /*
     NO *aux = addrss->inicio;
     while(aux != NULL){

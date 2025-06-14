@@ -48,11 +48,11 @@ int procuraVazio(TabelaInversa* tabela){
     return -1;
 }
 
-int insereMapeamento(TabelaInversa* tabela, int paginaVirtual, int quadroFisico) {    
+int insereMapeamento(TabelaInversa* tabela, int paginaVirtual, int quadroFisico, unsigned int tempo) {    
     // Atualiza o quadro físico
     tabela->quadros[quadroFisico].paginaVirtual = paginaVirtual;
     tabela->quadros[quadroFisico].validade = 1;
-    tabela->quadros[quadroFisico].ultimoAcesso = 0; //  mudaaaaaaaaaaaaaaaaaaar
+    tabela->quadros[quadroFisico].ultimoAcesso = tempo; //  mudaaaaaaaaaaaaaaaaaaar
     
     // Insere na hash table
     int indice = chave(paginaVirtual, tabela->tamanho);

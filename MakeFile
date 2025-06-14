@@ -14,7 +14,7 @@ build: $(OBJ)
 	$(CC) $(CFLAGS) -o $(TARGET) $(OBJ) $(LIBFLAG)
 
 run: $(TARGET)
-	./$(TARGET) nru teste.txt 4 128
+	./$(TARGET) lru teste.txt 4 128
 
 
 clean:

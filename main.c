@@ -20,7 +20,7 @@ int main(int argc, char *argv[]){
 
     int quantidadePaginas = totalMemoria / tamanhoPagina;
     TabelaInversa* tabela = criaTabela(quantidadePaginas);
-    unsigned int leituras = 0, escritas = 0, acessos = 0, faltasDePagina = 0;
+    unsigned int leituras = 0, escritas = 0, acessos = 0, faltasDePagina = 0, pagSujas = 0;
         
     unsigned int addr;
     char rw;
@@ -36,7 +36,7 @@ int main(int argc, char *argv[]){
             continue;
         }
         int paginaVirtual = addr >> shift;
-        faltasDePagina += acessoMemoria(tabela, paginaVirtual, substituicao, acessos);
+        faltasDePagina += acessoMemoria(tabela, paginaVirtual, rw, substituicao, acessos, &pagSujas);
 
     }
     printf(
@@ -46,8 +46,10 @@ int main(int argc, char *argv[]){
         "Tecnica de reposicao: %s\n"
         "Paginas lidas = %u\n" 
         "Paginas escritas = %u\n"
-        "Faltas de paginas = %u\n", 
-        arquivo_endereco, totalMemoria, tamanhoPagina, substituicao,leituras, escritas, faltasDePagina);
+        "Total de acessos = %u\n"
+        "Faltas de paginas = %u\n"
+        "Paginas \"sujas\" atualizadas no disco = %u\n",
+        arquivo_endereco, totalMemoria, tamanhoPagina, substituicao,leituras, escritas, acessos, faltasDePagina, pagSujas);
     /*
     NO *aux = addrss->inicio;
     while(aux != NULL){

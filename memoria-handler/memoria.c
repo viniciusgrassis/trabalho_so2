@@ -26,13 +26,11 @@ int acessoMemoria(TabelaInversa* tabela, int paginaVirtual, char rw, char *algor
 
         } else if(strcmp(algoritmoSubstituicao, "nru") == 0){
             quadro = encontrarVitimaNRU(tabela);
-            
+
         } else if(strcmp(algoritmoSubstituicao, "segunda_chance") == 0) {
-            //quadro = encontrarSegundaChance(tabela);
+            quadro = encontrarSegundaChance(tabela);
         }
-        // subs aqui
-        //int quadroVitima = encontrarVitimaNRU(tabela);
-        //int quadro = 0; // retorno do quadro achado pela função de troca ---------------------------------
+
         if(quadro >= 0) {
             if(tabela->quadros[quadro].modificada == 1) *(sujas)++;
             removePorQuadroFisico(tabela, quadro);

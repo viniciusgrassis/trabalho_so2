@@ -8,7 +8,7 @@
 typedef struct{
     int paginaVirtual;
     int validade;
-    int modficada;
+    int modificada;
     int referenciada;
     int ultimoAcesso;   
 } QuadroFisico;

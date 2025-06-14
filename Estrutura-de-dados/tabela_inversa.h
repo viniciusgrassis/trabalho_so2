@@ -6,10 +6,10 @@
 #include <string.h>
 
 typedef struct{
-    unsigned int paginaVirtual;
-    short int validade;
-    short int modificada;
-    short int referenciada;
+    int paginaVirtual;
+    int validade;
+    int modificada;
+    int referenciada;
     unsigned int ultimoAcesso;   
     unsigned int primeiroAcesso;   
 } QuadroFisico;

@@ -1,6 +1,4 @@
 #include "./memoria.h"
-#include "../Algoritmos-sub/lru.h"
-#include "../Algoritmos-sub/nru.h"
 
 int acessoMemoria(TabelaInversa* tabela, int paginaVirtual, char rw, char *algoritmoSubstituicao, unsigned int tempo, unsigned int *sujas){
     int quadroFisico = buscaTabelaInversa(tabela, paginaVirtual);
@@ -20,6 +18,7 @@ int acessoMemoria(TabelaInversa* tabela, int paginaVirtual, char rw, char *algor
     if(vazio != -1){
         insereMapeamento(tabela, paginaVirtual, vazio, tempo, (rw == 'W') ? 1 : 0);
     } else {
+        // printf("\n\n\n\n\n\n\n\n");
         int quadro = -1;
         if(strcmp(algoritmoSubstituicao, "lru") == 0){
             quadro = encontrarLRU(tabela);
@@ -32,9 +31,11 @@ int acessoMemoria(TabelaInversa* tabela, int paginaVirtual, char rw, char *algor
         }
 
         if(quadro >= 0) {
-            if(tabela->quadros[quadro].modificada == 1) *(sujas)++;
+            if(tabela->quadros[quadro].modificada == 1) (*sujas)++;
+            // printf("%d\n", tabela->quadros[quadro].modificada);
             removePorQuadroFisico(tabela, quadro);
             insereMapeamento(tabela, paginaVirtual, quadro, tempo, (rw == 'W')? 1 : 0);
+
         }
     }
     return 1;

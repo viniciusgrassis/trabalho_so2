@@ -1,9 +1,10 @@
 #include <stdio.h>
-#include "./estrutura-de-dados/tabela_inversa.h"
-#include "./memoria-handler/memoria.h"
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
+
+#include "./estrutura-de-dados/tabela_inversa.h"
+#include "./memoria-handler/memoria.h"
 
 
 int main(int argc, char *argv[]){
@@ -24,7 +25,7 @@ int main(int argc, char *argv[]){
     FILE *f = fopen(arquivo_endereco, "r");
 
     while(fscanf(f, "%x %c", &addr, &rw) != EOF) {
-        // printf("%u, %c\n", addr, rw); Imprime entrada
+        // printf("%u, %c\n", addr, rw); 
         if(rw == 'R') leituras++;
         if(rw == 'W') escritas++;
         if(rw == 'R' || rw == 'W') {
@@ -35,6 +36,9 @@ int main(int argc, char *argv[]){
         int paginaVirtual = addr >> shift;
         faltasDePagina += acessoMemoria(tabela, paginaVirtual, rw, substituicao, acessos, &pagSujas);
 
+    }
+    for(int i = 0; i < tabela->tamanho; i++){
+        printf("%d-", tabela->quadros[i].validade);
     }
     printf(
         "Arquivo de entrada: %s\n"

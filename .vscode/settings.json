@@ -10,7 +10,8 @@
         "xstring": "c",
         "xutility": "c",
         "memoria.h": "c",
-        "type_traits": "c"
+        "type_traits": "c",
+        "tabela_inversa.h": "c"
     },
     "C_Cpp.dimInactiveRegions": false
 }

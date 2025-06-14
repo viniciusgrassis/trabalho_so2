@@ -5,6 +5,8 @@ TabelaInversa* criaTabela(int tamanho){
     tabela->tamanho = tamanho;
     tabela->quadros = (QuadroFisico*) malloc (tamanho * sizeof(QuadroFisico));
     tabela->hash = (NoHash**) malloc (tamanho * sizeof(NoHash*));
+
+    if(tabela->quadros == NULL || tabela->hash ==NULL) EXIT_FAILURE;
     
     for (int i = 0; i < tamanho; i++){
         tabela->quadros[i].validade = 0;
@@ -41,7 +43,7 @@ int buscaTabelaInversa(TabelaInversa* tabela, int paginaVirtual) {
 int procuraVazio(TabelaInversa* tabela){
     for(int i = 0; i < tabela->tamanho; i++){
         if(tabela->quadros[i].validade == 0 ||
-                tabela->quadros->paginaVirtual < 0){
+                tabela->quadros[i].paginaVirtual < 0){
                     return i;
                 }
     }

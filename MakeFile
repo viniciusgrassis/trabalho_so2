@@ -14,7 +14,7 @@ build: $(OBJ)
 	$(CC) $(CFLAGS) -o $(TARGET) $(OBJ) $(LIBFLAG)
 
 run: $(TARGET)
-	./$(TARGET) segunda_chance compiler_test.log 1024 16384
+	./$(TARGET) lru compiler_test.log 8 16384
 
 
 clean:

@@ -6,9 +6,7 @@
 #include <stdlib.h>
 
 int encontrarLRU(TabelaInversa * tabela);
-
 int encontrarVitimaNRU(TabelaInversa* tabela);
-
 int encontrarSegundaChance(TabelaInversa * tabela);
 
 #endif

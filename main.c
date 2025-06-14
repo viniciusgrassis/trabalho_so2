@@ -37,9 +37,11 @@ int main(int argc, char *argv[]){
         faltasDePagina += acessoMemoria(tabela, paginaVirtual, rw, substituicao, acessos, &pagSujas);
 
     }
-    for(int i = 0; i < tabela->tamanho; i++){
-        printf("%d-", tabela->quadros[i].validade);
-    }
+    
+    // for(int i = 0; i < tabela->tamanho; i++){
+    //     printf("%d-", tabela->quadros[i].validade);
+    // }
+
     printf(
         "Arquivo de entrada: %s\n"
         "Tamanho da memoria: %d KB\n"

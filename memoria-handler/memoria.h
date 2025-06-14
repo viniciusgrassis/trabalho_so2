@@ -5,7 +5,7 @@
 #include "./memoria.h"
 #include "./algoritmos_sub.h"
 
-int acessoMemoria(TabelaInversa* tabela, int paginaVirtual, char rw, char *algoritmoSubstituicao, unsigned int tempo, unsigned int *sujas);
+int acessoMemoria(TabelaInversa* tabela, int paginaVirtual, char rw, char *algoritmoSubstituicao, unsigned int tempo, unsigned int *sujas, int debug);
 
 
 #endif

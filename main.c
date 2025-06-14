@@ -12,6 +12,8 @@ int main(int argc, char *argv[]){
     char *arquivo_endereco  = argv[2];
     int tamanhoPagina = atoi(argv[3]);
     int totalMemoria = atoi(argv[4]);
+    char *d = argv[5];
+    int debug = (d == NULL) ? 0 : 1;
 
     int temp = pow(2, log2(tamanhoPagina)) * pow(2, 10); // Calcula o tamanho das páginas em KB
     int shift = log2(temp); // Quantidade de bits que devem ser descartados para identificar a página
@@ -34,7 +36,7 @@ int main(int argc, char *argv[]){
             continue;
         }
         int paginaVirtual = addr >> shift;
-        faltasDePagina += acessoMemoria(tabela, paginaVirtual, rw, substituicao, acessos, &pagSujas);
+        faltasDePagina += acessoMemoria(tabela, paginaVirtual, rw, substituicao, acessos, &pagSujas, debug);
 
     }
     

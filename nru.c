@@ -2,72 +2,38 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*
-PaginaVirtual* encontrarVitimaNRU(Hash* tabelaPaginas){
-    PaginaVirtual* vitima = NULL;
-    for(int i = 0; i < tabelaPaginas->tamanho; i++){
-        FilaPagVirtual* fila = tabelaPaginas->tabela[i];
-        if(fila == NULL || fila->inicio == NULL) continue;
-        PaginaVirtual* pagina = fila->inicio;
-        while(pagina != NULL){
-            if(pagina->referenciada == 0 && pagina->modficada == 0){ // classe 0
-                vitima = pagina;
-                break;
-            }
-            pagina = pagina->prox;
-        }
-        if(vitima != NULL) break;
-
-    }
-    if(vitima == NULL){
-        for(int i = 0; i < tabelaPaginas->tamanho; i++){
-            FilaPagVirtual* fila = tabelaPaginas->tabela[i];
-            if(fila == NULL || fila->inicio == NULL) continue;
-            PaginaVirtual* pagina = fila->inicio;
-            while(pagina != NULL){
-                if(pagina->referenciada == 0 && pagina->modficada == 1){ // classe 1
-                    vitima = pagina;
-                    break;
-                }
-                pagina = pagina->prox;
-            }
-            if(vitima != NULL) break;
-        }
-    }
-    if(vitima == NULL){
-        for(int i = 0; i < tabelaPaginas->tamanho; i++){
-            FilaPagVirtual* fila = tabelaPaginas->tabela[i];
-            if(fila == NULL || fila->inicio == NULL) continue;
-            PaginaVirtual* pagina = fila->inicio;
-            while(pagina != NULL){
-                if(pagina->referenciada == 1 && pagina->modficada == 0){ // classe 2
-                    vitima = pagina;
-                    break;
-                }
-                pagina = pagina->prox;
-            }
-            if(vitima != NULL) break;
+int encontrarVitimaNRU(TabelaInversa* tabela){
+    for(int i = 0; i < tabela->tamanho; i++){ // classe 0
+        if(tabela->quadros[i].validade == 1 &&
+           tabela->quadros[i].modficada == 0 && 
+           tabela->quadros[i].referenciada == 0){ 
+            return i;
         }
     }
 
-    if(vitima == NULL){
-        for(int i = 0; i < tabelaPaginas->tamanho; i++){
-            FilaPagVirtual* fila = tabelaPaginas->tabela[i];
-            if(fila == NULL || fila->inicio == NULL) continue;
-            PaginaVirtual* pagina = fila->inicio;
-            while(pagina != NULL){
-                if(pagina->referenciada == 1 && pagina->modficada == 1){  // classe 3
-                    vitima = pagina;
-                    break;
-                }
-                pagina = pagina->prox;
-            }
-            if(vitima != NULL) break;
+    for(int i = 0; i < tabela->tamanho; i++){ // classe 1
+        if(tabela->quadros[i].validade == 1 &&
+           tabela->quadros[i].modficada == 1 && 
+           tabela->quadros[i].referenciada == 0){ 
+            return i;
         }
     }
-    if(vitima == NULL){
-        return NULL;
+
+    for(int i = 0; i < tabela->tamanho; i++){ // classe 2
+        if(tabela->quadros[i].validade == 1 &&
+           tabela->quadros[i].modficada == 0 && 
+           tabela->quadros[i].referenciada == 1){ 
+            return i;
+        }
     }
+
+    for(int i = 0; i < tabela->tamanho; i++){ // classe 3
+        if(tabela->quadros[i].validade == 1 &&
+           tabela->quadros[i].modficada == 1 && 
+           tabela->quadros[i].referenciada == 1){ 
+            return i;
+        }
+    }
+
+    return -1; // página não encontrada
 }
-    */
-

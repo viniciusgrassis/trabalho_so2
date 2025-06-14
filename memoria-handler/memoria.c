@@ -8,13 +8,17 @@ int acessoMemoria(TabelaInversa* tabela, int paginaVirtual, char rw, char *algor
     if( quadroFisico != -1){
         if(rw == 'W') tabela->quadros[quadroFisico].modificada = 1;
         tabela->quadros[quadroFisico].ultimoAcesso = tempo;
+        tabela->quadros[quadroFisico].referenciada = 1;
         // sucesso
         return 0;
+    }
+    if(tempo > 0 && tempo % (int)(tabela->tamanho * 0.2) == 0) {
+        for(int i = 0; i < tabela->tamanho; i++) tabela->quadros[i].referenciada = 0;
     }
 
     int vazio = procuraVazio(tabela);    
     if(vazio != -1){
-        insereMapeamento(tabela, paginaVirtual, vazio, tempo);
+        insereMapeamento(tabela, paginaVirtual, vazio, tempo, (rw == 'W') ? 1 : 0);
     } else {
         int quadro = -1;
         if(strcmp(algoritmoSubstituicao, "lru") == 0){
@@ -30,7 +34,7 @@ int acessoMemoria(TabelaInversa* tabela, int paginaVirtual, char rw, char *algor
         if(quadro >= 0) {
             if(tabela->quadros[quadro].modificada == 1) *(sujas)++;
             removePorQuadroFisico(tabela, quadro);
-            insereMapeamento(tabela, paginaVirtual, quadro, tempo);
+            insereMapeamento(tabela, paginaVirtual, quadro, tempo, (rw == 'W')? 1 : 0);
         }
     }
     return 1;

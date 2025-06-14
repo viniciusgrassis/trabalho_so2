@@ -12,11 +12,8 @@ int main(int argc, char *argv[]){
     int tamanhoPagina = atoi(argv[3]);
     int totalMemoria = atoi(argv[4]);
 
-    
     int temp = pow(2, log2(tamanhoPagina)) * pow(2, 10); // Calcula o tamanho das páginas em KB
     int shift = log2(temp); // Quantidade de bits que devem ser descartados para identificar a página
-
-    //page = addr >> shift, pelo pdf do saquetto
 
     int quantidadePaginas = totalMemoria / tamanhoPagina;
     TabelaInversa* tabela = criaTabela(quantidadePaginas);

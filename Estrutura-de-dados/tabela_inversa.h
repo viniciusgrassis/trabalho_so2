@@ -29,7 +29,7 @@ typedef struct {
 TabelaInversa* criaTabela(int tamanho);
 void destroiTabela(TabelaInversa* tabela);
 int buscaTabelaInversa(TabelaInversa* tabela, int paginaVirtual);
-int insereMapeamento(TabelaInversa* tabela, int paginaVirtual, int quadroFisico, unsigned int tempo);
+int insereMapeamento(TabelaInversa* tabela, int paginaVirtual, int quadroFisico, unsigned int tempo, int modificada);
 int procuraVazio(TabelaInversa* tabela);
 int removePagina(TabelaInversa* tabela, int paginaVirtual);
 int removePorQuadroFisico(TabelaInversa* tabela, int quadroFisico);

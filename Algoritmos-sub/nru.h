@@ -1,4 +1,4 @@
-#ifdef NRU_H
+#ifndef NRU_H  
 #define NRU_H
 
 #include "./estrutura-de-dados/tabela_inversa.h"

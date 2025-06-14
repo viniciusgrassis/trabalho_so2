@@ -1,6 +1,3 @@
-#include "./estrutura-de-dados/tabela_inversa.h"
-#include <stdio.h>
-#include <stdlib.h>
 #include "./nru.h"
 
 int encontrarVitimaNRU(TabelaInversa* tabela){

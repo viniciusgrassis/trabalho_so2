@@ -1,7 +1,5 @@
 #include <stdio.h>
-#include "./estrutura-de-dados/fila_addrs.h"
 #include "./estrutura-de-dados/tabela_inversa.h"
-#include "./io-handler/leitura.h"
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
@@ -10,7 +8,6 @@
 int main(int argc, char *argv[]){
     char *substituicao = argv[1];
     char *arquivo_endereco  = argv[2];
-
     int tamanhoPagina = atoi(argv[3]);
     int totalMemoria = atoi(argv[4]);
 
@@ -21,28 +18,38 @@ int main(int argc, char *argv[]){
     //page = addr >> shift, pelo pdf do saquetto
 
     int quantidadePaginas = totalMemoria / tamanhoPagina;
+    unsigned int leituras = 0, escritas = 0;
+
 
     printf("%d\n", temp);
     printf("%d\n", shift);
         
-    Fila_addrs *addrss = leituraArquivo(arquivo_endereco);
-    
+    unsigned int addr;
+    char rw;
+    FILE *f = fopen(arquivo_endereco, "r");
+
+    while(fscanf(f, "%x %c", &addr, &rw) != EOF) {
+        printf("%u, %c\n", addr, rw);
+        if(rw == 'R') leituras++;
+        if(rw == 'W') escritas++;
+    }
+    printf("Leituras = %u, escritas = %u\n", leituras, escritas);
     TabelaInversa* tabela = criaTabela(quantidadePaginas);
-    
+    /*
     NO *aux = addrss->inicio;
     while(aux != NULL){
         
 
         
+    
         
-        
-
-        aux = aux->prox;
-    }
+    
+    aux = aux->prox;
+}
     
 
 
-    imprimirFila_addrs(addrss);
+*/
 }
 
 // gcc ./estrutura-de-dados/fila_addrs.c ./memoria-handler/bit-handler.c  leitura.c main.c -o oi

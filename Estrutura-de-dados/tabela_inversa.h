@@ -19,8 +19,6 @@ typedef struct NoHash{
     struct NoHash* prox;
 } NoHash;
 
-typedef struct NoHash* ListaHash;
-
 typedef struct {
     QuadroFisico* quadros;
     NoHash** hash;

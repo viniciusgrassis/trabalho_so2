@@ -8,7 +8,7 @@ TabelaInversa* criaTabela(int tamanho){
     
     for (int i = 0; i < tamanho; i++){
         tabela->quadros[i].validade = 0;
-        tabela->quadros[i].paginaVirtual = 0;
+        tabela->quadros[i].paginaVirtual = -1;
         tabela->quadros[i].referenciada = 0;
         tabela->quadros[i].ultimoAcesso = -1;
         tabela->quadros[i].modficada = 0;
@@ -24,12 +24,12 @@ int chave(int paginaVirtual, int tamanho){
 }
 
 int buscaTabelaInversa(TabelaInversa* tabela, int paginaVirtual) {
-    int indice = hash(paginaVirtual, tabela->tamanho);
+    int indice = chave(paginaVirtual, tabela->tamanho);
     
     NoHash* atual = tabela->hash[indice];
     while (atual != NULL) {
         if (atual->paginaVirtual == paginaVirtual) {
-            return atual->paginaFisica; // Retorna o quadro físico
+            return atual->quadroFisico; // Retorna o quadro físico
         }
         atual = atual->prox;
     }
@@ -37,17 +37,28 @@ int buscaTabelaInversa(TabelaInversa* tabela, int paginaVirtual) {
     return -1; 
 }
 
-int inserePagina(TabelaInversa* tabela, int paginaVirtual, int quadroFisico) {    
+
+int procuraVazio(TabelaInversa* tabela){
+    for(int i = 0; i < tabela->tamanho; i++){
+        if(tabela->quadros[i].validade == 0 ||
+                tabela->quadros->paginaVirtual == 0){
+                    return i;
+                }
+    }
+    return -1;
+}
+
+int insereMapeamento(TabelaInversa* tabela, int paginaVirtual, int quadroFisico) {    
     // Atualiza o quadro físico
     tabela->quadros[quadroFisico].paginaVirtual = paginaVirtual;
     tabela->quadros[quadroFisico].validade = 1;
     tabela->quadros[quadroFisico].ultimoAcesso = 0; //  mudaaaaaaaaaaaaaaaaaaar
     
     // Insere na hash table
-    int indice = hash(paginaVirtual, tabela->tamanho);
+    int indice = chave(paginaVirtual, tabela->tamanho);
     NoHash* novo = (NoHash*)malloc(sizeof(NoHash));
     novo->paginaVirtual = paginaVirtual;
-    novo->paginaFisica = quadroFisico;
+    novo->quadroFisico = quadroFisico;
     novo->prox = tabela->hash[indice]; // Encadeamento
     tabela->hash[indice] = novo;
     

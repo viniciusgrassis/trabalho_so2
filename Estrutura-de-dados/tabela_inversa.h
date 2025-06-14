@@ -14,7 +14,7 @@ typedef struct{
 } QuadroFisico;
 
 typedef struct{
-    int paginaFisica;
+    int quadroFisico;
     int paginaVirtual;
     struct NoHash* prox;
 } NoHash;
@@ -29,5 +29,7 @@ typedef struct {
 int* criaTabela(int tamanho);
 void destroiTabela(TabelaInversa* tabela);
 int buscaTabelaInversa(TabelaInversa* tabela, int paginaVirtual);
+int insereMapeamento(TabelaInversa* tabela, int paginaVirtual, int quadroFisico);
+int procuraVazio(TabelaInversa* tabela);
 
 #endif

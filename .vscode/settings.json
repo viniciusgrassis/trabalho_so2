@@ -9,6 +9,7 @@
         "utility": "c",
         "xstring": "c",
         "xutility": "c",
-        "memoria.h": "c"
+        "memoria.h": "c",
+        "type_traits": "c"
     }
 }

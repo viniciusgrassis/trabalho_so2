@@ -66,7 +66,7 @@ int insereMapeamento(TabelaInversa* tabela, int paginaVirtual, int quadroFisico)
 }
 
 int removePagina(TabelaInversa* tabela, int paginaVirtual) {
-    int indice = hash(paginaVirtual, tabela->tamanho);
+    int indice = chave(paginaVirtual, tabela->tamanho);
     NoHash* atual = tabela->hash[indice];
     NoHash* anterior = NULL;
     
@@ -101,7 +101,7 @@ int removePorQuadroFisico(TabelaInversa* tabela, int quadroFisico){
     int paginaVirtual = tabela->quadros[quadroFisico].paginaVirtual;
     
     // Remove da hash table
-    int indice = hash(paginaVirtual, tabela->tamanho);
+    int indice = chave(paginaVirtual, tabela->tamanho);
     NoHash* atual = tabela->hash[indice];
     NoHash* anterior = NULL;
 

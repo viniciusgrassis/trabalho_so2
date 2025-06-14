@@ -1,8 +1,8 @@
-#include "./estrutura-de-dados/hash.h"
+#include "./estrutura-de-dados/tabela_inversa.h"
 #include <stdio.h>
 #include <stdlib.h>
 
-
+/*
 PaginaVirtual* encontrarVitimaNRU(Hash* tabelaPaginas){
     PaginaVirtual* vitima = NULL;
     for(int i = 0; i < tabelaPaginas->tamanho; i++){
@@ -69,4 +69,5 @@ PaginaVirtual* encontrarVitimaNRU(Hash* tabelaPaginas){
         return NULL;
     }
 }
+    */
 

@@ -13,11 +13,13 @@ typedef struct{
     int ultimoAcesso;   
 } QuadroFisico;
 
-typedef struct{
+typedef struct NoHash{
     int quadroFisico;
     int paginaVirtual;
     struct NoHash* prox;
 } NoHash;
+
+typedef struct NoHash* ListaHash;
 
 typedef struct {
     QuadroFisico* quadros;
@@ -26,7 +28,7 @@ typedef struct {
 } TabelaInversa;
 
 
-int* criaTabela(int tamanho);
+TabelaInversa* criaTabela(int tamanho);
 void destroiTabela(TabelaInversa* tabela);
 int buscaTabelaInversa(TabelaInversa* tabela, int paginaVirtual);
 int insereMapeamento(TabelaInversa* tabela, int paginaVirtual, int quadroFisico);

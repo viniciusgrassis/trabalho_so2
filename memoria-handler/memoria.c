@@ -1,6 +1,7 @@
 #include "./memoria.h"
 
-int acessoMemoria(TabelaInversa* tabela, int paginaVirtual, char rw, char *algoritmoSubstituicao, unsigned int tempo, unsigned int *sujas, int debug){
+int acessoMemoria(TabelaInversa* tabela, unsigned int addr, int shift, char rw, char *algoritmoSubstituicao, unsigned int tempo, unsigned int *sujas, int debug){
+    int paginaVirtual = addr >> shift;
     int quadroFisico = buscaTabelaInversa(tabela, paginaVirtual);
     printf("%d - ", tempo);
     if(tempo > 0 && tempo % (int)(tabela->tamanho * 0.2) == 0) {
@@ -36,7 +37,11 @@ int acessoMemoria(TabelaInversa* tabela, int paginaVirtual, char rw, char *algor
         }
 
         if(quadro >= 0) {
-            printf("Page miss, quadro %d substituiu o endereco.\n", quadro);
+            unsigned int offset = addr & ((1 << shift) - 1);
+            unsigned novoAddrs = ((unsigned)quadro << shift) | offset;
+
+            printf("Page miss, quadro %d substituiu o endereco %08x pelo %08x.\n", quadro, addr, novoAddrs);
+
             if(tabela->quadros[quadro].modificada == 1) (*sujas)++;
             // printf("%d\n", tabela->quadros[quadro].modificada);
             removePorQuadroFisico(tabela, quadro);

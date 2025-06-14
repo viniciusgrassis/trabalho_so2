@@ -102,7 +102,7 @@ if __name__ == "__main__":
     patterns = ['compiler', 'matrix', 'compressor', 'simulator']
     
     for pattern in patterns:
-        accesses = generate_memory_accesses(1000000, pattern)
+        accesses = generate_memory_accesses(100000, pattern)
         filename = f"{pattern}_test.log"
         save_to_file(accesses, filename)
         print(f"Arquivo gerado: {filename} com {len(accesses)} acessos")

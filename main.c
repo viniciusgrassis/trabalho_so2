@@ -35,8 +35,8 @@ int main(int argc, char *argv[]){
         } else {
             continue;
         }
-        int paginaVirtual = addr >> shift;
-        faltasDePagina += acessoMemoria(tabela, paginaVirtual, rw, substituicao, acessos, &pagSujas, debug);
+        // int paginaVirtual = addr >> shift;
+        faltasDePagina += acessoMemoria(tabela, addr, shift, rw, substituicao, acessos, &pagSujas, debug);
 
     }
     

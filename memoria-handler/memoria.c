@@ -1,10 +1,10 @@
 #include "./memoria.h"
 
-int acessoMemoria(TabelaInversa* tabela, unsigned int addr, int shift, char rw, char *algoritmoSubstituicao, unsigned int tempo, unsigned int *sujas, int debug){
+int acessoMemoria(TabelaInversa* tabela, unsigned int addr, int shift, char rw, Relatorio* rl, int debug){
     int paginaVirtual = addr >> shift;
     int quadroFisico = buscaTabelaInversa(tabela, paginaVirtual);
-    printf("%d - ", tempo);
-    if(tempo > 0 && tempo % (int)(tabela->tamanho * 0.2) == 0) {
+    if(debug) printf("%d - ", rl->acessos);
+    if(rl->acessos > 0 && rl->acessos % (int)(tabela->tamanho * 0.2) == 0) {
         if(debug) {
             printf("Bit de refêrencia limpo em todos os quadros. ");
         }
@@ -14,7 +14,7 @@ int acessoMemoria(TabelaInversa* tabela, unsigned int addr, int shift, char rw, 
     if( quadroFisico != -1){
         if(debug) printf("Page hit. \n");
         if(rw == 'W') tabela->quadros[quadroFisico].modificada = 1;
-        tabela->quadros[quadroFisico].ultimoAcesso = tempo;
+        tabela->quadros[quadroFisico].ultimoAcesso = rl->acessos;
         tabela->quadros[quadroFisico].referenciada = 1;
         // sucesso
         return 0;
@@ -22,17 +22,17 @@ int acessoMemoria(TabelaInversa* tabela, unsigned int addr, int shift, char rw, 
 
     int vazio = procuraVazio(tabela);    
     if(vazio != -1){
-        printf("Page miss, inseriu em um quadro vazio. \n");
-        insereMapeamento(tabela, paginaVirtual, vazio, tempo, (rw == 'W') ? 1 : 0);
+        if(debug) printf("Page miss, inseriu em um quadro vazio. \n");
+        insereMapeamento(tabela, paginaVirtual, vazio, rl->acessos, (rw == 'W') ? 1 : 0);
     } else {
         int quadro = -1;
-        if(strcmp(algoritmoSubstituicao, "lru") == 0){
+        if(strcmp(rl->substituicao, "lru") == 0){
             quadro = encontrarLRU(tabela);
 
-        } else if(strcmp(algoritmoSubstituicao, "nru") == 0){
-            quadro = encontrarVitimaNRU(tabela);
+        } else if(strcmp(rl->substituicao, "nru") == 0){
+            quadro = encontrarNRU(tabela);
 
-        } else if(strcmp(algoritmoSubstituicao, "segunda_chance") == 0) {
+        } else if(strcmp(rl->substituicao, "segunda_chance") == 0) {
             quadro = encontrarSegundaChance(tabela);
         }
 
@@ -40,12 +40,12 @@ int acessoMemoria(TabelaInversa* tabela, unsigned int addr, int shift, char rw, 
             unsigned int offset = addr & ((1 << shift) - 1);
             unsigned novoAddrs = ((unsigned)quadro << shift) | offset;
 
-            printf("Page miss, quadro %d substituiu o endereco %08x pelo %08x.\n", quadro, addr, novoAddrs);
+            if(debug) printf("Page miss, quadro %d substituiu o endereco %08x pelo %08x.\n", quadro, addr, novoAddrs);
 
-            if(tabela->quadros[quadro].modificada == 1) (*sujas)++;
+            if(tabela->quadros[quadro].modificada == 1) rl->pagSujas++;
             // printf("%d\n", tabela->quadros[quadro].modificada);
             removePorQuadroFisico(tabela, quadro);
-            insereMapeamento(tabela, paginaVirtual, quadro, tempo, (rw == 'W')? 1 : 0);
+            insereMapeamento(tabela, paginaVirtual, quadro, rl->acessos, (rw == 'W')? 1 : 0);
 
         }
     }

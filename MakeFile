@@ -14,7 +14,7 @@ build: $(OBJ)
 	$(CC) $(CFLAGS) -o $(TARGET) $(OBJ) $(LIBFLAG)
 
 run: $(TARGET)
-	./$(TARGET) lru compiler_test.log 1024 16384 debug >> oi.text
+	./$(TARGET) lru compiler_test.log 1024 16384 
 
 clean:
 	rm -rf $(OBJ_SRC)

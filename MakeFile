@@ -26,6 +26,9 @@ run: $(TARGET)
 	./$(TARGET) segunda_chance $(FILE) $(PAGE) $(MEMORY)
 	@echo "--------------------------------------------"
 
+debug: $(TARGET)
+	./$(TARGET) nru						 $(FILE) $(PAGE) $(MEMORY) debug >> log.txt
+
 clean:
 	rm -rf $(OBJ_SRC)
 

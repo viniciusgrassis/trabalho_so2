@@ -58,12 +58,12 @@ int insereMapeamento(TabelaInversa* tabela, int paginaVirtual, int quadroFisico,
     tabela->quadros[quadroFisico].referenciada = 1;
     tabela->quadros[quadroFisico].modificada = modificada;
     
-    // Insere na hash table
+    // Insere no início do índice da hash 
     int indice = chave(paginaVirtual, tabela->tamanho);
     NoHash* novo = (NoHash*)malloc(sizeof(NoHash));
     novo->paginaVirtual = paginaVirtual;
     novo->quadroFisico = quadroFisico;
-    novo->prox = tabela->hash[indice]; // Encadeamento
+    novo->prox = tabela->hash[indice]; 
     tabela->hash[indice] = novo;
     
     return 1;
@@ -74,7 +74,7 @@ int removePorQuadroFisico(TabelaInversa* tabela, int quadroFisico){
 
     int paginaVirtual = tabela->quadros[quadroFisico].paginaVirtual;
     
-    // Remove da hash table
+    // Remove da hash 
     int indice = chave(paginaVirtual, tabela->tamanho);
     NoHash* atual = tabela->hash[indice];
     NoHash* anterior = NULL;
@@ -88,7 +88,6 @@ int removePorQuadroFisico(TabelaInversa* tabela, int quadroFisico){
                 anterior->prox = atual->prox;
             }
 
-            // Libera o nó
             free(atual);
             
             // Marca o quadro como inválido
@@ -99,11 +98,10 @@ int removePorQuadroFisico(TabelaInversa* tabela, int quadroFisico){
         atual = atual->prox;
     }
 
-    return 0; // Não deveria acontecer se a tabela estiver consistente
+    return 0; 
 }
 
 void destroiTabela(TabelaInversa* tabela) {
-    // Libera nós da hash table
     for (int i = 0; i < tabela->tamanho; i++) {
         NoHash* atual = tabela->hash[i];
         while (atual != NULL) {

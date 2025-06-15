@@ -3,6 +3,7 @@
 int acessoMemoria(TabelaInversa* tabela, unsigned int addr, int shift, char rw, Relatorio* rl, int debug){
     int paginaVirtual = addr >> shift;
     int quadroFisico = buscaTabelaInversa(tabela, paginaVirtual);
+
     if(debug) printf("%d - ", rl->acessos);
     if(rl->acessos > 0 && rl->acessos % (int)(tabela->tamanho * 0.2) == 0) {
         if(debug) {
@@ -13,6 +14,7 @@ int acessoMemoria(TabelaInversa* tabela, unsigned int addr, int shift, char rw, 
 
     if( quadroFisico != -1){
         if(debug) printf("Page hit. \n");
+
         if(rw == 'W') tabela->quadros[quadroFisico].modificada = 1;
         tabela->quadros[quadroFisico].ultimoAcesso = rl->acessos;
         tabela->quadros[quadroFisico].referenciada = 1;
@@ -23,7 +25,9 @@ int acessoMemoria(TabelaInversa* tabela, unsigned int addr, int shift, char rw, 
     int vazio = procuraVazio(tabela);    
     if(vazio != -1){
         if(debug) printf("Page miss, inseriu em um quadro vazio. \n");
+
         insereMapeamento(tabela, paginaVirtual, vazio, rl->acessos, (rw == 'W') ? 1 : 0);
+        
     } else {
         int quadro = -1;
         if(strcmp(rl->substituicao, "lru") == 0){

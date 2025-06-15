@@ -45,5 +45,3 @@ int main(int argc, char *argv[]){
     imprimeRelatorio(rl);
     
 }
-
-// gcc ./estrutura-de-dados/fila_addrs.c ./memoria-handler/bit-handler.c  leitura.c main.c -o oi

@@ -8,14 +8,14 @@ def generate_memory_accesses(num_accesses: int, pattern_type: str) -> List[Tuple
     
     Args:
         num_accesses: número total de acessos a gerar
-        pattern_type: tipo de padrão ('compiler', 'matrix', 'compressor', 'simulator')
+        pattern_type: tipo de padrão ('compilador', 'matriz', 'compressor', 'simulador')
     
     Returns:
         Lista de tuplas (endereço_hex, tipo_acesso)
     """
     accesses = []
     
-    if pattern_type == 'compiler':
+    if pattern_type == 'compilador':
         # Padrão de compilador: muitos acessos aleatórios com algumas localidades temporais
         for i in range(num_accesses):
             # 70% de chance de acessar uma região local
@@ -30,8 +30,8 @@ def generate_memory_accesses(num_accesses: int, pattern_type: str) -> List[Tuple
             access_type = 'W' if random.random() < 0.3 else 'R'
             accesses.append((f"{address:08x}".upper(), access_type))
     
-    elif pattern_type == 'matrix':
-        # Padrão de matriz: acessos sequenciais e em padrões regulares
+    elif pattern_type == 'matriz':
+        # compressor Padrão de matriz: acessos sequenciais e em padrões regulares
         matrix_size = 1000  # Tamanho da matriz "virtual"
         element_size = 8    # Tamanho de cada elemento (8 bytes)
         
@@ -67,7 +67,7 @@ def generate_memory_accesses(num_accesses: int, pattern_type: str) -> List[Tuple
             access_type = 'W' if random.random() < 0.2 else 'R'
             accesses.append((f"{address:08x}".upper(), access_type))
     
-    elif pattern_type == 'simulator':
+    elif pattern_type == 'simulador':
         # Padrão de simulador: mistura de acessos sequenciais e aleatórios
         particle_count = 10000
         particle_size = 32  # bytes por partícula
@@ -99,10 +99,12 @@ def save_to_file(accesses: List[Tuple[str, str]], filename: str):
 # Exemplo de geração de arquivos de teste
 if __name__ == "__main__":
     # Gera 10,000 acessos para cada tipo de programa
-    patterns = ['compiler', 'matrix', 'compressor', 'simulator']
+    
+    patterns = ['compilador', 'matriz', 'compressor', 'simulador']
+    # patterns = ['compilador']
     
     for pattern in patterns:
-        accesses = generate_memory_accesses(100000, pattern)
-        filename = f"{pattern}_test.log"
+        accesses = generate_memory_accesses(10000, pattern)
+        filename = f"{pattern}.log"
         save_to_file(accesses, filename)
         print(f"Arquivo gerado: {filename} com {len(accesses)} acessos")

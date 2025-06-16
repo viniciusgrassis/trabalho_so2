@@ -7,8 +7,8 @@ OBJ = $(patsubst ./%, $(OBJ_SRC)/%, $(SOURCES_C:.c=.o))
 LIBFLAG = -lm
 
 FILE = compilador.log
-PAGE = 8
-MEMORY = 128
+PAGE = 64
+MEMORY = 1024
 
 $(OBJ_SRC)/%.o: %.c
 	@mkdir -p $(dir $@)
@@ -34,3 +34,6 @@ clean:
 
 cleanLog:
 	rm *.log
+
+leak: clean build
+	valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all -s ./$(TARGET) nru $(FILE) $(PAGE) $(MEMORY)

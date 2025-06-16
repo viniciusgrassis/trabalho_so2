@@ -41,7 +41,12 @@ int main(int argc, char *argv[]){
         rl->faltasDePagina += acessoMemoria(tabela, addr, shift, rw, rl, debug);
 
     }
-
+    
     imprimeRelatorio(rl);
     
+    fclose(f);
+    destroiRelatorio(rl);
+    destroiTabela(tabela);
+    
+    return 0;
 }

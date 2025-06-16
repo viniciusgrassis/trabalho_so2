@@ -16,8 +16,8 @@ int main(int argc, char *argv[]){
     char *d = argv[5];
     int debug = (argc > 5) ? 1 : 0;
 
-    int temp = pow(2, log2(tamanhoPagina)) * pow(2, 10); // Calcula o tamanho das páginas em KB
-    int shift = log2(temp); // Quantidade de bits que devem ser descartados para identificar a página
+    int temp = pow(2, log2(tamanhoPagina)) * pow(2, 10); // calcula o tamanho das páginas em KB
+    int shift = log2(temp); // quantidade de bits que devem ser descartados para identificar a página
 
     int quantidadePaginas = totalMemoria / tamanhoPagina;
     TabelaInversa* tabela = criaTabela(quantidadePaginas);

@@ -104,7 +104,7 @@ if __name__ == "__main__":
     # patterns = ['compilador']
     
     for pattern in patterns:
-        accesses = generate_memory_accesses(10000, pattern)
+        accesses = generate_memory_accesses(500000, pattern)
         filename = f"{pattern}.log"
         save_to_file(accesses, filename)
         print(f"Arquivo gerado: {filename} com {len(accesses)} acessos")

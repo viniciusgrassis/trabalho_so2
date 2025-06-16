@@ -37,7 +37,7 @@ int main(int argc, char *argv[]){
         } else {
             continue;
         }
-        // int paginaVirtual = addr >> shift;
+        // paginaVirtual = addr >> shift;
         rl->faltasDePagina += acessoMemoria(tabela, addr, shift, rw, rl, debug);
 
     }

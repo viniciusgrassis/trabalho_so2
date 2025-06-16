@@ -6,9 +6,9 @@ SOURCES_C = $(shell find . -name '*.c')
 OBJ = $(patsubst ./%, $(OBJ_SRC)/%, $(SOURCES_C:.c=.o))
 LIBFLAG = -lm
 
-FILE = matriz.log
-PAGE = 4
-MEMORY = 8192
+FILE = compilador.log
+PAGE = 8
+MEMORY = 128
 
 $(OBJ_SRC)/%.o: %.c
 	@mkdir -p $(dir $@)

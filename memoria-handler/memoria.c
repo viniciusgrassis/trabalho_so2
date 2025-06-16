@@ -7,14 +7,14 @@ int acessoMemoria(TabelaInversa* tabela, unsigned int addr, int shift, char rw, 
 
     if(rl->acessos > 0 && rl->acessos % frequenciaDeLimpeza == 0) {
         if(debug) {
-            printf("Bit de refêrencia limpo em todos os quadros.\n");
+            printf("Bit de referência limpo em todos os quadros.\n");
         }
         for(int i = 0; i < tabela->tamanho; i++) tabela->quadros[i].referenciada = 0;
     }
-    if(debug) printf("%d - ", rl->acessos);
+    if(debug) printf("Acesso %d - ", rl->acessos);
 
     if( quadroFisico != -1){
-        if(debug) printf("Page hit, o endereco %08x esta no quadro %d.\n", addr, quadroFisico);
+        if(debug) printf("Page hit, o endereço %08x está no quadro %d.\n", addr, quadroFisico);
 
         if(rw == 'W') tabela->quadros[quadroFisico].modificada = 1;
         tabela->quadros[quadroFisico].ultimoAcesso = rl->acessos;
@@ -25,7 +25,7 @@ int acessoMemoria(TabelaInversa* tabela, unsigned int addr, int shift, char rw, 
 
     int vazio = procuraVazio(tabela);    
     if(vazio != -1){
-        if(debug) printf("Page miss, inseriu o endereco %08x no quadro vazio %d. \n", addr, vazio);
+        if(debug) printf("Page miss, inseriu o endereço %08x no quadro vazio %d. \n", addr, vazio);
 
         insereMapeamento(tabela, paginaVirtual, vazio, rl->acessos, (rw == 'W') ? 1 : 0);
         
@@ -45,7 +45,7 @@ int acessoMemoria(TabelaInversa* tabela, unsigned int addr, int shift, char rw, 
             unsigned int offset = addr & ((1 << shift) - 1);
             unsigned novoAddrs = ((unsigned)quadro << shift) | offset;
 
-            if(debug) printf("Page miss, quadro %d substituiu o endereco %08x pelo %08x.\n", quadro, addr, novoAddrs);
+            if(debug) printf("Page miss, quadro %d substituiu o endereço %08x pelo %08x.\n", quadro, addr, novoAddrs);
 
             if(tabela->quadros[quadro].modificada == 1) rl->pagSujas++;
             // printf("%d\n", tabela->quadros[quadro].modificada);

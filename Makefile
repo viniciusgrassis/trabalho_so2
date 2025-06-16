@@ -6,9 +6,9 @@ SOURCES_C = $(shell find . -name '*.c')
 OBJ = $(patsubst ./%, $(OBJ_SRC)/%, $(SOURCES_C:.c=.o))
 LIBFLAG = -lm
 
-FILE = compilador.log
-PAGE = 64
-MEMORY = 2048
+FILE = matriz.log
+PAGE = 4
+MEMORY = 8192
 
 $(OBJ_SRC)/%.o: %.c
 	@mkdir -p $(dir $@)
@@ -27,7 +27,7 @@ run: $(TARGET)
 	@echo "--------------------------------------------"
 
 debug: $(TARGET)
-	./$(TARGET) nru						 $(FILE) $(PAGE) $(MEMORY) debug >> log.txt
+	./$(TARGET) nru $(FILE) $(PAGE) $(MEMORY) debug >> log.txt
 
 clean:
 	rm -rf $(OBJ_SRC)
